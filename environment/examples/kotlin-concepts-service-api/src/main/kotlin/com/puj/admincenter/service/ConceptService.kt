@@ -29,7 +29,7 @@ class ConceptService(private val conceptRepository: ConceptRepository){
 
     fun create(createConceptDto: CreateConceptDto): ResponseEntity<*>{
         if (conceptRepository.existsByConceptId(createConceptDto.conceptId)) {
-            val messageError = "Concept whit concept id: ${createConceptDto.conceptId} already exists."
+            val messageError = "Concept with concept id: ${createConceptDto.conceptId} already exists."
             LOG.error(messageError)
             return ResponseEntity<Any>(messageError,
                                         HttpStatus.CONFLICT)
@@ -63,12 +63,26 @@ class ConceptService(private val conceptRepository: ConceptRepository){
                               validStartDate = createConceptDto.validStartDate, 
                               validEndDate = createConceptDto.validEndDate, 
                               invalidReason = createConceptDto.invalidReason, 
-                              createDt = createConceptDto.createDt)
+                              createDt = createConceptDto.createDt,
+                              deletionMark = false)
         val conceptSaved = conceptRepository.save(concept)
         LOG.info("Concept ${createConceptDto.conceptId} created with id ${conceptSaved.id}")
 
         val responseDto = IdResponseDto(conceptSaved.id.toLong())
         return ResponseEntity<IdResponseDto>(responseDto,
                                              HttpStatus.CREATED)
+    }
+
+    fun deleteById(conceptId: Int): ResponseEntity<*>{
+        if (!(conceptRepository.existsByConceptId(conceptId))) {
+            val messageError = "Concept with concept id: ${conceptId} does not exist."
+            LOG.error(messageError)
+            return ResponseEntity<Any>(messageError,
+                                        HttpStatus.CONFLICT)
+        }
+
+        conceptRepository.logicalRemoval(conceptId)
+        LOG.info("Concept ${conceptId} was deleted.")
+        return ResponseEntity<Any>(HttpStatus.NO_CONTENT)
     }
 }

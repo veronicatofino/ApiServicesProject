@@ -77,7 +77,7 @@ concept_post = {
     'sexCd': 'James White',
     'anatOrCond': 'James White',
     'poaCodeStatus': 'James White',
-    'poaCodeChange': 'James White',
+    'poaCodeChange': 2012,
     'poaCodeChangeYear': 'James White',
     'validStartDate': 'James White',
     'validEndDate': 'James White',
@@ -85,7 +85,7 @@ concept_post = {
     'createDt': 'James White'
 }
 json_data_post = json.dumps(concept_post)
-conn.request("POST", "/concepts", json_data_post, headers=headers)
+conn.request("POST", "/concepts/", json_data_post, headers=headers)
 
 ############################################
 

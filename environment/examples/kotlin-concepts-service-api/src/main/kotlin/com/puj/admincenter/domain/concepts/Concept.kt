@@ -101,5 +101,9 @@ data class Concept(
     val invalidReason: String? = "",
 
     @Column(nullable = true)
-    val createDt: String? = ""
+    val createDt: String? = "",
+
+    @Column(nullable = false)
+    val deletionMark: Boolean = false
+
 )
