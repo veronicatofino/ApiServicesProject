@@ -176,6 +176,16 @@ dmypy.json
 .prof
 
 
+### Vagrant ###
+# General
+environment/.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.log
+
+### Vagrant Patch ###
+*.box
+
 #Others
 
 environment/examples/.cache
