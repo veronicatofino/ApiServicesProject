@@ -27,6 +27,8 @@ hs_err_pid*
 # Compiled class file
 
 # Log file
+environment/examples/.kotlin/
+
 
 # BlueJ files
 
