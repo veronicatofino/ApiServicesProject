@@ -1,0 +1,33 @@
+package com.puj.admincenter.dto.concepts
+
+data class CreateConceptDto(
+    val pxordx: String,
+    val oldPxordx: String,
+    val codeType: String,
+    val conceptClassId: String,
+    val conceptId: Int,
+    val vocabularyId: String,
+    val domainId: String,
+    val track: String?,
+    val standardConcept: String?,
+    val code: String,
+    val codeWithPeriods: String,
+    val codeScheme: String,
+    val longDesc: String,
+    val shortDesc: String,
+    val codeStatus: String,
+    val codeChange: String,
+    val codeChangeYear: String,
+    val codePlannedType: String,
+    val codeBillingStatus: String,
+    val codeCmsClaimStatus: String,
+    val sexCd: String?,
+    val anatOrCond: String,
+    val poaCodeStatus: String?,
+    val poaCodeChange: String?,
+    val poaCodeChangeYear: Int?,
+    val validStartDate: String?,
+    val validEndDate: String?,
+    val invalidReason: String?,
+    val createDt: String?
+)

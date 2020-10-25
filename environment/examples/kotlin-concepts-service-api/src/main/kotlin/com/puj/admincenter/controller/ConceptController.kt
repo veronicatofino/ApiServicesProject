@@ -1,0 +1,39 @@
+package com.puj.admincenter.controller
+
+import com.puj.admincenter.domain.concepts.Concept
+import com.puj.admincenter.dto.concepts.CreateConceptDto
+/**import com.puj.admincenter.dto.concepts.ConceptDto*/
+import com.puj.admincenter.service.ConceptService
+
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.CrossOrigin
+import org.springframework.web.context.request.RequestContextHolder
+import org.springframework.web.context.request.ServletRequestAttributes
+import javax.validation.Valid
+import javax.servlet.http.HttpServletRequest
+import java.security.Principal
+import java.util.Date
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+@CrossOrigin
+@RequestMapping("/concepts")
+@RestController
+class ConceptController(private val conceptService: ConceptService) {
+    companion object {
+        val logger = LoggerFactory.getLogger(ConceptController::class.java)!!
+    }
+
+    @PostMapping(
+        value = ["/"],
+        consumes = ["application/json"],
+        produces = ["application/json"]
+    )
+    fun create(@RequestBody @Valid createConceptDto: CreateConceptDto,
+               @RequestHeader(value="authorization", required=false) authorization: String): ResponseEntity<*>
+        = conceptService.create(createConceptDto)
+}
