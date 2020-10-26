@@ -1,10 +1,11 @@
 package com.puj.admincenter.service
 
 import com.puj.admincenter.domain.concepts.Concept
-/**import com.puj.admincenter.dto.concepts.ConceptDto*/
+import com.puj.admincenter.dto.concepts.ConceptDto
 import com.puj.admincenter.dto.concepts.CreateConceptDto
 import com.puj.admincenter.dto.IdResponseDto
 import com.puj.admincenter.repository.concepts.ConceptRepository
+import com.puj.admincenter.domain.concepts.ConceptSpecification
 
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Page
@@ -84,5 +85,21 @@ class ConceptService(private val conceptRepository: ConceptRepository){
         conceptRepository.logicalRemoval(conceptId)
         LOG.info("Concept ${conceptId} was deleted.")
         return ResponseEntity<Any>(HttpStatus.NO_CONTENT)
+    }
+
+    fun getConceptsByGeneralParams(vocabularyId : String?,
+                                   conceptId : String?,
+                                   domainId : String?,
+                                   shortDesc : String?) : ResponseEntity<*> {
+        val concepts = conceptRepository.findAll(ConceptSpecification(vocabularyId,
+                                                                      conceptId,
+                                                                      domainId,
+                                                                      shortDesc)).map { ConceptDto.convert(it) }
+        if (!concepts.isEmpty()){
+            return ResponseEntity<List<ConceptDto>>(concepts, HttpStatus.OK)
+        }
+        else{
+            return ResponseEntity<Any>("No such concepts for parameters", HttpStatus.NOT_FOUND)
+        }
     }
 }

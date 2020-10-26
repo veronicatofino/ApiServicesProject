@@ -2,7 +2,7 @@ package com.puj.admincenter.controller
 
 import com.puj.admincenter.domain.concepts.Concept
 import com.puj.admincenter.dto.concepts.CreateConceptDto
-/**import com.puj.admincenter.dto.concepts.ConceptDto*/
+import com.puj.admincenter.dto.concepts.ConceptDto
 import com.puj.admincenter.service.ConceptService
 
 import org.springframework.http.HttpStatus
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
+import org.springframework.data.web.PageableDefault
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import javax.validation.Valid
 import javax.servlet.http.HttpServletRequest
 import java.security.Principal
@@ -55,4 +58,18 @@ class ConceptController(private val conceptService: ConceptService) {
 
     fun delete(@PathVariable conceptId: Int): ResponseEntity<*>
         = conceptService.deleteById(conceptId)
+
+    @GetMapping(
+        value = ["/getConceptsByGeneralParams"],
+        produces = ["application/json"]
+    )
+    fun getConceptsByGeneralParams(@RequestParam(value = "vocabularyId", required = false) vocabularyId: String?,
+                                   @RequestParam(value = "conceptId", required = false) conceptId: String?,
+                                   @RequestParam(value = "domainId", required = false) domainId: String?,
+                                   @RequestParam(value = "shortDesc", required = false) shortDesc: String?) : ResponseEntity<*> {
+        return conceptService.getConceptsByGeneralParams(vocabularyId, 
+                                                        conceptId,
+                                                        domainId,
+                                                        shortDesc)
+    }
 }
