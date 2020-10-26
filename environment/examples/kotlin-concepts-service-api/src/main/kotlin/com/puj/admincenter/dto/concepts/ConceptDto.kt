@@ -20,7 +20,7 @@ data class ConceptDto(
     val shortDesc: String,
     val codeStatus: String,
     val codeChange: String,
-    val codeChangeYear: String,
+    val codeChangeYear: Int,
     val codePlannedType: String,
     val codeBillingStatus: String,
     val codeCmsClaimStatus: String,

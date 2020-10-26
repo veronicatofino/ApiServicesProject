@@ -1,7 +1,7 @@
 package com.puj.admincenter.service
 
 import com.puj.admincenter.domain.concepts.Concept
-/**import com.puj.admincenter.dto.concepts.ConceptDto*/
+import com.puj.admincenter.dto.concepts.ConceptDto
 import com.puj.admincenter.dto.concepts.CreateConceptDto
 import com.puj.admincenter.dto.IdResponseDto
 import com.puj.admincenter.repository.concepts.ConceptRepository
@@ -73,7 +73,7 @@ class ConceptService(private val conceptRepository: ConceptRepository){
                                              HttpStatus.CREATED)
     }
 
-    fun deleteById(conceptId: Int): ResponseEntity<*>{
+    fun deleteByConceptId(conceptId: Int): ResponseEntity<*>{
         if (!(conceptRepository.existsByConceptId(conceptId))) {
             val messageError = "Concept with concept id: ${conceptId} does not exist."
             LOG.error(messageError)
@@ -83,6 +83,49 @@ class ConceptService(private val conceptRepository: ConceptRepository){
 
         conceptRepository.logicalRemoval(conceptId)
         LOG.info("Concept ${conceptId} was deleted.")
+        return ResponseEntity<Any>(HttpStatus.NO_CONTENT)
+    }
+
+    
+    fun updateByConceptId(conceptDto: ConceptDto, conceptId: Int): ResponseEntity<*>{
+        if (!(conceptRepository.existsByConceptId(conceptId))) {
+            val messageError = "Concept with concept id: ${conceptId} does not exist."
+            LOG.error(messageError)
+            return ResponseEntity<Any>(messageError,
+                                        HttpStatus.CONFLICT)
+        }
+        /*val concept = Concept(pxordx = conceptDto.pxordx,
+                            oldPxordx = conceptDto.oldPxordx, 
+                            codeType = conceptDto.codeType,
+                            conceptClassId = conceptDto.conceptClassId,
+                            conceptId = conceptDto.conceptId,
+                            vocabularyId = conceptDto.vocabularyId,
+                            domainId = conceptDto.domainId,
+                            track = conceptDto.track,
+                            standardConcept = conceptDto.standardConcept,
+                            code = conceptDto.code,
+                            codeWithPeriods = conceptDto.codeWithPeriods,
+                            codeScheme = conceptDto.codeScheme,
+                            longDesc = conceptDto.longDesc,
+                            shortDesc = conceptDto.shortDesc,
+                            codeStatus = conceptDto.codeStatus,
+                            codeChange = conceptDto.codeChange,
+                            codeChangeYear = conceptDto.codeChangeYear,
+                            codePlannedType = conceptDto.codePlannedType,
+                            codeBillingStatus = conceptDto.codeBillingStatus,
+                            codeCmsClaimStatus = conceptDto.codeCmsClaimStatus,
+                            sexCd = conceptDto.sexCd,
+                            anatOrCond = conceptDto.anatOrCond,
+                            poaCodeStatus = conceptDto.poaCodeStatus,
+                            poaCodeChange = conceptDto.poaCodeChange,
+                            poaCodeChangeYear = conceptDto.poaCodeChangeYear, 
+                            validStartDate = conceptDto.validStartDate, 
+                            validEndDate = conceptDto.validEndDate, 
+                            invalidReason = conceptDto.invalidReason, 
+                            createDt = conceptDto.createDt)*/
+        
+        conceptRepository.updateByConceptId(conceptDto, conceptId)
+        LOG.info("Concept ${conceptId} was updated.")
         return ResponseEntity<Any>(HttpStatus.NO_CONTENT)
     }
 }

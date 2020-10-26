@@ -2,7 +2,7 @@ package com.puj.admincenter.controller
 
 import com.puj.admincenter.domain.concepts.Concept
 import com.puj.admincenter.dto.concepts.CreateConceptDto
-/**import com.puj.admincenter.dto.concepts.ConceptDto*/
+import com.puj.admincenter.dto.concepts.ConceptDto
 import com.puj.admincenter.service.ConceptService
 
 import org.springframework.http.HttpStatus
@@ -39,7 +39,7 @@ class ConceptController(private val conceptService: ConceptService) {
     
     fun create(@RequestBody @Valid createConceptDto: CreateConceptDto): ResponseEntity<*>
         = conceptService.create(createConceptDto)
-    /* 
+     
     @PutMapping(
         value = ["/update/{conceptId}"],
         consumes = ["application/json"],
@@ -47,12 +47,12 @@ class ConceptController(private val conceptService: ConceptService) {
     )
 
     fun create(@RequestBody @Valid conceptDto: ConceptDto, @PathVariable conceptId: Int): ResponseEntity<*>
-        = conceptService.updateById(conceptDto)*/
+        = conceptService.updateByConceptId(conceptDto, conceptId)
 
     @DeleteMapping(
         value = ["/delete/{conceptId}"]
     )
 
     fun delete(@PathVariable conceptId: Int): ResponseEntity<*>
-        = conceptService.deleteById(conceptId)
+        = conceptService.deleteByConceptId(conceptId)
 }

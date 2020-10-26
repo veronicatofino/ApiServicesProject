@@ -180,3 +180,33 @@ clear
 make compile
 make execute
 exit
+cd kotlin-concepts-service-api/
+make clean
+make compile
+clea
+clear
+make clear
+clear
+make clean
+make compile
+make execute
+clear
+make execute
+clear
+make clean
+make compile
+make execute
+clear
+make clean
+make compile
+clear
+make compile
+clear
+cls
+clear
+clear
+make compile
+make execute
+clear
+make clean
+make compile
