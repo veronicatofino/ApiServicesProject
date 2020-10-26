@@ -1,5 +1,5 @@
-# kotlin-users-service-api
-API Service to admin users
+# kotlin-concepts-service-api
+API Service to concepts with admin user permissions
 
 ## Prerequirements
 1. Gradle 4.10
