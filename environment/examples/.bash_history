@@ -81,3 +81,102 @@ cls
 clear
 make compile
 make execute 
+ls
+concet kotlin-concepts-service-api/
+cd kotlin-concepts-service-api/
+ls
+make compile
+make execute
+make compile
+make compile
+clear
+make compile
+clear
+make compile
+clearclear
+clear
+make compile
+clear
+make compile
+clear
+make compile
+make execute
+make execute
+clear
+make compile
+make compile
+make execute
+cd kotlin-concepts-service-api/
+make compile
+make execute
+cls
+clear
+make compile
+clear
+make compile
+clear
+make compile
+CLEAR
+clear
+make compile
+make execute}+
+make execute}
+make execute
+make execute
+exit
+sudo emacs
+jobs
+kill $(jobs -p)
+jobs
+kill 1
+sudo kill 1
+jobs
+exit
+jobs
+cd kotlin-concepts-service-api/
+make compile
+make execute
+clear
+make compile
+make compile
+clear
+make compile
+make execute
+clear
+make execute
+clear
+make compile
+clear
+make compile
+clear
+make compile
+make execute
+clear
+make compile
+clear
+make clean
+make clean
+make compile
+make execute
+make clean
+make compile
+make execute
+clear
+make clean
+make compile
+make execute
+clear
+make clean
+make compile
+make execute
+clear
+make clean
+make compile
+make execute
+make compile
+make clean
+clean
+clear
+make compile
+make execute
+exit

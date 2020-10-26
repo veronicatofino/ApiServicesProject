@@ -29,11 +29,30 @@ class ConceptController(private val conceptService: ConceptService) {
     }
 
     @PostMapping(
-        value = ["/"],
+        value = ["/create"],
         consumes = ["application/json"],
         produces = ["application/json"]
     )
-    fun create(@RequestBody @Valid createConceptDto: CreateConceptDto,
+    /*fun create(@RequestBody @Valid createConceptDto: CreateConceptDto,
                @RequestHeader(value="authorization", required=false) authorization: String): ResponseEntity<*>
+        = conceptService.create(createConceptDto)*/
+    
+    fun create(@RequestBody @Valid createConceptDto: CreateConceptDto): ResponseEntity<*>
         = conceptService.create(createConceptDto)
+    /* 
+    @PutMapping(
+        value = ["/update/{conceptId}"],
+        consumes = ["application/json"],
+        produces = ["application/json"]
+    )
+
+    fun create(@RequestBody @Valid conceptDto: ConceptDto, @PathVariable conceptId: Int): ResponseEntity<*>
+        = conceptService.updateById(conceptDto)*/
+
+    @DeleteMapping(
+        value = ["/delete/{conceptId}"]
+    )
+
+    fun delete(@PathVariable conceptId: Int): ResponseEntity<*>
+        = conceptService.deleteById(conceptId)
 }
