@@ -42,7 +42,7 @@ class ConceptController(private val conceptService: ConceptService) {
     
     fun create(@RequestBody @Valid createConceptDto: CreateConceptDto): ResponseEntity<*>
         = conceptService.create(createConceptDto)
-    /* 
+     
     @PutMapping(
         value = ["/update/{conceptId}"],
         consumes = ["application/json"],
@@ -50,14 +50,14 @@ class ConceptController(private val conceptService: ConceptService) {
     )
 
     fun create(@RequestBody @Valid conceptDto: ConceptDto, @PathVariable conceptId: Int): ResponseEntity<*>
-        = conceptService.updateById(conceptDto)*/
+        = conceptService.updateByConceptId(conceptDto, conceptId)
 
     @DeleteMapping(
         value = ["/delete/{conceptId}"]
     )
 
     fun delete(@PathVariable conceptId: Int): ResponseEntity<*>
-        = conceptService.deleteById(conceptId)
+        = conceptService.deleteByConceptId(conceptId)
 
     @GetMapping(
         value = ["/getConceptsByGeneralParams"],
@@ -73,3 +73,4 @@ class ConceptController(private val conceptService: ConceptService) {
                                                         shortDesc)
     }
 }
+

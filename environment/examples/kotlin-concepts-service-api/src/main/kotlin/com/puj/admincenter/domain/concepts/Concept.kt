@@ -65,7 +65,7 @@ data class Concept(
     val codeChange: String = "",
 
     @Column(nullable = false)
-    val codeChangeYear: String = "",
+    val codeChangeYear: Int = 0,
 
     @Column(nullable = false)
     val codePlannedType: String = "",
