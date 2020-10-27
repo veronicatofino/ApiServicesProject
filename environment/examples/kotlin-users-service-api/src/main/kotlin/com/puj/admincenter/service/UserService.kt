@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import org.slf4j.LoggerFactory
+
 import java.io.Serializable
 import java.util.*
 
@@ -38,6 +39,10 @@ class UserService(private val userRepository: UserRepository) {
         }
     }
 
+    fun setPassword(password: String) : String {
+        return BCrypt.hashpw(password, BCrypt.gensalt())
+    }
+    
     fun create(createUserDto: CreateUserDto): ResponseEntity<*> {
         if (userRepository.existsByEmail(createUserDto.email)) {
             val messageError = "User with email: ${createUserDto.email} already exists."
@@ -45,11 +50,12 @@ class UserService(private val userRepository: UserRepository) {
             return ResponseEntity<Any>(messageError,
                                        HttpStatus.CONFLICT)
         }
-
+        val hashedPassword = setPassword(createUserDto.password)
         val user = User(email = createUserDto.email,
                         name = createUserDto.name,
-                        password = createUserDto.password,
+                        password = hashedPassword,
                         username = createUserDto.username)
+
         val userSaved = userRepository.save(user)
         LOG.info("User ${createUserDto.email} created with id ${userSaved.id}")
 

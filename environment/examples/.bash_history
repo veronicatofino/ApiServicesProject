@@ -210,3 +210,10 @@ make execute
 clear
 make clean
 make compile
+jobs
+cd kotlin-concepts-service-api/
+make clean
+clear
+make compile
+make execute
+exit

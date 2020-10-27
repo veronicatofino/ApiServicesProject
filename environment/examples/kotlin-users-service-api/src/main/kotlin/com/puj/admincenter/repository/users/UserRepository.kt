@@ -19,10 +19,8 @@ interface UserRepository : JpaRepository<User, Int>,
         SELECT user
         FROM User user
         WHERE user.username = :username
-        AND user.password = :password
     """)
-    fun findUserByUserAndPassword(username: String,
-                                  password: String): User?
+    fun findUserByUser(username: String): User?
 
     @Query("""
         SELECT COUNT(user) > 0

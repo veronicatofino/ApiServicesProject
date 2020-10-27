@@ -39,11 +39,10 @@ class UserController(private val userService: UserService) {
                               authorization)
 
     @PostMapping(
-        value = ["/"],
+        value = ["/create"],
         consumes = ["application/json"],
         produces = ["application/json"]
     )
-    fun create(@RequestBody @Valid createUserDto: CreateUserDto, 
-               @RequestHeader(value="authorization", required=true) authorization: String): ResponseEntity<*>
+    fun create(@RequestBody @Valid createUserDto: CreateUserDto): ResponseEntity<*>
         = userService.create(createUserDto)
 }

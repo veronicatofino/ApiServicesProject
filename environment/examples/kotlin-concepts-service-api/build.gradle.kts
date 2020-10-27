@@ -36,8 +36,9 @@ dependencies {
     compile("io.fusionauth:fusionauth-jwt:3.5.3")
     implementation( "com.auth0:java-jwt:3.9.0")
     compile(group="com.auth0", name="auth0-spring-security-api", version="1.4.0")
-    	// The JWT library 
+    // The JWT library 
 	compile(group="io.jsonwebtoken", name="jjwt", version="0.9.1")
+
 }
 
 tasks.withType<Test> {

@@ -34,9 +34,11 @@ class LoginService(val userRepository: UserRepository) {
     private val jwtExpiration: Long = 5
 
     fun login(loginDto: LoginDto): ResponseEntity<*> {
-        val user = userRepository.findUserByUserAndPassword(loginDto.username,
-                                                            loginDto.password)
-        return if (user != null) {
+        
+        val user = userRepository.findUserByUser(loginDto.username)
+
+        return if (user != null && BCrypt.checkpw(loginDto.password, user.password)) {
+
             logger.info("found user $user")
             val jwtToken = getJWTToken(loginDto.username)
     
