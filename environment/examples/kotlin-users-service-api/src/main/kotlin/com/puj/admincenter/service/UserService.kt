@@ -39,7 +39,7 @@ class UserService(private val userRepository: UserRepository) {
         }
     }
 
-    fun setPassword(password: String) : String {
+    fun getHashedPassword(password: String) : String {
         return BCrypt.hashpw(password, BCrypt.gensalt())
     }
     
@@ -50,7 +50,7 @@ class UserService(private val userRepository: UserRepository) {
             return ResponseEntity<Any>(messageError,
                                        HttpStatus.CONFLICT)
         }
-        val hashedPassword = setPassword(createUserDto.password)
+        val hashedPassword = getHashedPassword(createUserDto.password)
         val user = User(email = createUserDto.email,
                         name = createUserDto.name,
                         password = hashedPassword,
@@ -62,5 +62,25 @@ class UserService(private val userRepository: UserRepository) {
         val responseDto = IdResponseDto(userSaved.id.toLong())
         return ResponseEntity<IdResponseDto>(responseDto,
                                              HttpStatus.CREATED)
+    }
+
+    fun updatePasswordByUsername(currentPassword: String, newPassword : String, username: String): ResponseEntity<*>{
+        if (!(userRepository.existsByUsername(username))) {
+            val messageError = "User with username: ${username} does not exist."
+            LOG.error(messageError)
+            return ResponseEntity<Any>(messageError,
+                                        HttpStatus.NOT_FOUND)
+        }
+        val user = userRepository.findUserByUsername(username)
+        if (user != null && BCrypt.checkpw(getHashedPassword(currentPassword), user?.password)){
+            userRepository.updatePasswordByUsername(newPassword, username)
+            LOG.info("User ${username} password was updated.")
+            return ResponseEntity<Any>(HttpStatus.OK)
+        } else {
+            val messageError = "Password not valid for user with username: ${username}."
+            LOG.error(messageError)
+            return ResponseEntity<Any>(messageError,
+                                        HttpStatus.CONFLICT)
+        }
     }
 }

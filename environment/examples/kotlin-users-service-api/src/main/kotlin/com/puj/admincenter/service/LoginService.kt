@@ -35,7 +35,7 @@ class LoginService(val userRepository: UserRepository) {
 
     fun login(loginDto: LoginDto): ResponseEntity<*> {
         
-        val user = userRepository.findUserByUser(loginDto.username)
+        val user = userRepository.findUserByUsername(loginDto.username)
 
         return if (user != null && BCrypt.checkpw(loginDto.password, user.password)) {
 

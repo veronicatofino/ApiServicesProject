@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.data.jpa.repository.Query
+import org.springframework.transaction.annotation.Transactional
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.repository.query.Param
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -20,7 +22,7 @@ interface UserRepository : JpaRepository<User, Int>,
         FROM User user
         WHERE user.username = :username
     """)
-    fun findUserByUser(username: String): User?
+    fun findUserByUsername(username: String): User?
 
     @Query("""
         SELECT COUNT(user) > 0
@@ -28,4 +30,20 @@ interface UserRepository : JpaRepository<User, Int>,
         WHERE user.email = :email
     """)
     fun existsByEmail(@Param("email") email: String): Boolean
+
+    @Query("""
+        SELECT COUNT(user) > 0
+        FROM User user
+        WHERE user.username = :username
+    """)
+    fun existsByUsername(@Param("username") username: String): Boolean
+
+    @Transactional
+    @Modifying
+    @Query("""
+            UPDATE User user
+            SET user.password = :#{#newPassword}
+            WHERE concept.username = :username
+        """)
+    fun updatePasswordByUsername(newPassword : String, username : String)
 }
