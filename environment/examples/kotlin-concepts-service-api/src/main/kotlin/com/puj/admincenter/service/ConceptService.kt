@@ -112,37 +112,7 @@ class ConceptService(private val conceptRepository: ConceptRepository){
             LOG.error(messageError)
             return ResponseEntity<Any>(messageError,
                                         HttpStatus.CONFLICT)
-        }
-        /*val concept = Concept(pxordx = conceptDto.pxordx,
-                            oldPxordx = conceptDto.oldPxordx, 
-                            codeType = conceptDto.codeType,
-                            conceptClassId = conceptDto.conceptClassId,
-                            conceptId = conceptDto.conceptId,
-                            vocabularyId = conceptDto.vocabularyId,
-                            domainId = conceptDto.domainId,
-                            track = conceptDto.track,
-                            standardConcept = conceptDto.standardConcept,
-                            code = conceptDto.code,
-                            codeWithPeriods = conceptDto.codeWithPeriods,
-                            codeScheme = conceptDto.codeScheme,
-                            longDesc = conceptDto.longDesc,
-                            shortDesc = conceptDto.shortDesc,
-                            codeStatus = conceptDto.codeStatus,
-                            codeChange = conceptDto.codeChange,
-                            codeChangeYear = conceptDto.codeChangeYear,
-                            codePlannedType = conceptDto.codePlannedType,
-                            codeBillingStatus = conceptDto.codeBillingStatus,
-                            codeCmsClaimStatus = conceptDto.codeCmsClaimStatus,
-                            sexCd = conceptDto.sexCd,
-                            anatOrCond = conceptDto.anatOrCond,
-                            poaCodeStatus = conceptDto.poaCodeStatus,
-                            poaCodeChange = conceptDto.poaCodeChange,
-                            poaCodeChangeYear = conceptDto.poaCodeChangeYear, 
-                            validStartDate = conceptDto.validStartDate, 
-                            validEndDate = conceptDto.validEndDate, 
-                            invalidReason = conceptDto.invalidReason, 
-                            createDt = conceptDto.createDt)*/
-        
+        }        
         conceptRepository.updateByConceptId(conceptDto, conceptId)
         LOG.info("Concept ${conceptId} was updated.")
         return ResponseEntity<Any>(HttpStatus.NO_CONTENT)

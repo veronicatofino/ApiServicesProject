@@ -250,3 +250,39 @@ make clean
 make compile
 make execute
 exit
+make clean
+cd kotlin-users-service-api/
+make clean
+make compile
+make compile
+make execute
+sudo lsof -i :8080
+sudo kill -9 2110
+make compile
+make compile
+
+sudo lsof -i :8080
+sudo kill -9 2284
+make compile
+make compile
+make compile
+make execute
+sudo lsof -i :8080
+sudo kill -9 2614
+make execute
+sudo lsof -i :8080
+sudo kill -9 2690
+make compile
+make execute
+sudo lsof -i :8080
+sudo lsof -i :8080
+sudo kill -9 2816
+cd kotlin-concepts-service-api/
+make clean
+make compile
+make compile
+make execute
+exit
+sudo lsof -i :8080
+sudo kill -9 2129
+exit

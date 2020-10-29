@@ -2,6 +2,7 @@ package com.puj.admincenter.controller
 
 import com.puj.admincenter.domain.users.User
 import com.puj.admincenter.dto.users.CreateUserDto
+import com.puj.admincenter.dto.users.UpdateUserPwDto
 import com.puj.admincenter.dto.users.UserDto
 import com.puj.admincenter.service.UserService
 
@@ -46,4 +47,13 @@ class UserController(private val userService: UserService) {
     fun create(@RequestBody @Valid createUserDto: CreateUserDto,
                @RequestHeader(value="authorization", required=true) authorization: String): ResponseEntity<*>
         = userService.create(createUserDto)
+
+    @PutMapping(
+        value = ["/updatePassword"],
+        consumes = ["application/json"],
+        produces = ["application/json"]
+    )
+    fun updatePasswordByUsername(@RequestBody @Valid updateUserPwDto: UpdateUserPwDto,
+                                 @RequestHeader(value="authorization", required=true) authorization: String): ResponseEntity<*>
+        = userService.updatePasswordByUsername(updateUserPwDto)
 }

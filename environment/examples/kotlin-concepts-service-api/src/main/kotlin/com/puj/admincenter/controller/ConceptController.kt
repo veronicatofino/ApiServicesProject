@@ -69,11 +69,12 @@ class ConceptController(private val conceptService: ConceptService) {
     fun getConceptsByGeneralParams(@RequestParam(value = "vocabularyId", required = false) vocabularyId: String?,
                                    @RequestParam(value = "conceptId", required = false) conceptId: String?,
                                    @RequestParam(value = "domainId", required = false) domainId: String?,
-                                   @RequestParam(value = "shortDesc", required = false) shortDesc: String?) : ResponseEntity<*> {
+                                   @RequestParam(value = "shortDesc", required = false) shortDesc: String?,
+                                   @RequestHeader(value="authorization", required=true) authorization: String) : ResponseEntity<*> {
         return conceptService.getConceptsByGeneralParams(vocabularyId, 
-                                                        conceptId,
-                                                        domainId,
-                                                        shortDesc)
+                                                         conceptId,
+                                                         domainId,
+                                                         shortDesc)
     }
 }
 

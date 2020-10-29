@@ -24,7 +24,7 @@ import java.util.*
 @Service
 class LoginService(val userRepository: UserRepository) {
     companion object {
-        val logger = LoggerFactory.getLogger(LoginService::class.java)!!
+        val LOG = LoggerFactory.getLogger(LoginService::class.java)!!
     }
 
     @Value(value = "\${jwt.secret}")
@@ -39,19 +39,19 @@ class LoginService(val userRepository: UserRepository) {
 
         return if (user != null && BCrypt.checkpw(loginDto.password, user.password)) {
 
-            logger.info("found user $user")
+            LOG.info("found user $user")
             val jwtToken = getJWTToken(loginDto.username)
     
             println("tokenJwt: $jwtToken")
 
             val token =  TokenDto(jwtToken,
                                   user.id)
-            logger.info("Token $token for user $user generated")
+            LOG.info("Token $token for user $user generated")
             ResponseEntity<TokenDto>(token,
                                      HttpStatus.OK)
         } else {
             val message = "the user does not exist or is not enabled" 
-            logger.error(message)
+            LOG.error(message)
             ResponseEntity<String>(message,
                                    HttpStatus.NOT_FOUND)
         }
@@ -71,7 +71,7 @@ class LoginService(val userRepository: UserRepository) {
                                                  .map(GrantedAuthority::getAuthority)
                                                  .collect(Collectors.toList()))
                         .setIssuedAt(Date(System.currentTimeMillis()))
-                        .setExpiration(Date(System.currentTimeMillis() + 600000))
+                        .setExpiration(Date(System.currentTimeMillis() + 700000))
                         .signWith(SignatureAlgorithm.HS512,
                                   secretKey.toByteArray()).compact()
         return "Bearer " + token
