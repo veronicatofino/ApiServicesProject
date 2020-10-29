@@ -25,13 +25,16 @@ class SwaggerConfiguration {
     @Bean
     open fun api(): Docket = Docket(DocumentationType.SWAGGER_2)
         .host(apiHost)
-        .select().apis(RequestHandlerSelectors.basePackage("com.puj.admincenter.controller"))
+        .select()
+        .apis(RequestHandlerSelectors.basePackage("com.puj.admincenter.controller"))
         .paths(regex("/.*"))
-        .build().pathProvider(object : RelativePathProvider(null) {
+        .build()
+        .pathProvider(object : RelativePathProvider(null) {
             override fun getApplicationBasePath(): String {
                 return apiBasePath
             }
         })
+        .groupName("User Swagger")
         .apiInfo(defineApiMetaData())
 
     fun defineApiMetaData(): ApiInfo {
