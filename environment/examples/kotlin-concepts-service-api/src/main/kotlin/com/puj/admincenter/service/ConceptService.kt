@@ -95,11 +95,14 @@ class ConceptService(private val conceptRepository: ConceptRepository){
                                                                       conceptId,
                                                                       domainId,
                                                                       shortDesc)).map { ConceptDto.convert(it) }
-        if (!concepts.isEmpty()){
+        val numberOfConceptsFound = concepts.size
+        if (!concepts.isEmpty()) {
+            LOG.info("${numberOfConceptsFound} concepts found with VocabularyId: ${vocabularyId}, ConceptId: ${conceptId}, DomainId: ${domainId} and ShortDesc: ${shortDesc}")
             return ResponseEntity<List<ConceptDto>>(concepts, HttpStatus.OK)
         }
-        else{
-            return ResponseEntity<Any>("No such concepts for parameters", HttpStatus.NOT_FOUND)
+        else {
+            LOG.info("No concepts were found with VocabularyId: ${vocabularyId}, ConceptId: ${conceptId}, DomainId: ${domainId} and ShortDesc: ${shortDesc}")
+            return ResponseEntity<Any>("No concepts were found", HttpStatus.NOT_FOUND)
         }
     }
     
