@@ -43,7 +43,7 @@ interface UserRepository : JpaRepository<User, Int>,
     @Query("""
             UPDATE User user
             SET user.password = :#{#newPassword}
-            WHERE concept.username = :username
+            WHERE user.username = :username
         """)
     fun updatePasswordByUsername(newPassword : String, username : String)
 }

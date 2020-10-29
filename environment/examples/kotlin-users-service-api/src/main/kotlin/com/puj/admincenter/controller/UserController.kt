@@ -43,6 +43,7 @@ class UserController(private val userService: UserService) {
         consumes = ["application/json"],
         produces = ["application/json"]
     )
-    fun create(@RequestBody @Valid createUserDto: CreateUserDto): ResponseEntity<*>
+    fun create(@RequestBody @Valid createUserDto: CreateUserDto,
+               @RequestHeader(value="authorization", required=true) authorization: String): ResponseEntity<*>
         = userService.create(createUserDto)
 }

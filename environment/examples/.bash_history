@@ -230,4 +230,23 @@ cd kotlin-users-service-api/
 make clean
 make compile
 make compile
+exitls kotlin-concepts-service-api/
+cd kotlin-concepts-service-api/
+make clean
+make compile
+make execute
+clear
+make execute
+clear
+make execute
+exit
+clear
+cd kotlin-users-service-api/
+make clean
+make compile
+make execute
+clear
+make clean
+make compile
+make execute
 exit

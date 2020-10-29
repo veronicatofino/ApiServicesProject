@@ -40,7 +40,8 @@ class ConceptController(private val conceptService: ConceptService) {
                @RequestHeader(value="authorization", required=false) authorization: String): ResponseEntity<*>
         = conceptService.create(createConceptDto)*/
     
-    fun create(@RequestBody @Valid createConceptDto: CreateConceptDto): ResponseEntity<*>
+    fun create(@RequestBody @Valid createConceptDto: CreateConceptDto,
+               @RequestHeader(value="authorization", required=true) authorization: String): ResponseEntity<*>
         = conceptService.create(createConceptDto)
      
     @PutMapping(
@@ -49,14 +50,16 @@ class ConceptController(private val conceptService: ConceptService) {
         produces = ["application/json"]
     )
 
-    fun create(@RequestBody @Valid conceptDto: ConceptDto, @PathVariable conceptId: Int): ResponseEntity<*>
+    fun update(@RequestBody @Valid conceptDto: ConceptDto, @PathVariable conceptId: Int,
+               @RequestHeader(value="authorization", required=true) authorization: String): ResponseEntity<*>
         = conceptService.updateByConceptId(conceptDto, conceptId)
 
     @DeleteMapping(
         value = ["/delete/{conceptId}"]
     )
 
-    fun delete(@PathVariable conceptId: Int): ResponseEntity<*>
+    fun delete(@PathVariable conceptId: Int,
+               @RequestHeader(value="authorization", required=true) authorization: String): ResponseEntity<*>
         = conceptService.deleteByConceptId(conceptId)
 
     @GetMapping(
