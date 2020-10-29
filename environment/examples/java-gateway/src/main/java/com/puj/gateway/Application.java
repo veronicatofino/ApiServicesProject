@@ -98,7 +98,7 @@ public class Application {
                     .uri(httpUirConcepts)
             )
 
-            .build();   
+            .build();
     }
 
     @RequestMapping("/ping")

@@ -32,12 +32,13 @@ class SwaggerConfiguration {
                 return apiBasePath
             }
         })
+        .groupName("ConceptSwagger")
         .apiInfo(defineApiMetaData())
 
     fun defineApiMetaData(): ApiInfo {
         return ApiInfoBuilder()
-                .title("PUJ API AdminCenter")
-                .description("\"PUJ RESTful API - AdminCenter\"")
+                .title("Servicio de conceptos")
+                .description("\"PUJ RESTful API - AdminCenter - Conceptos\"")
                 .version("1.1.0")
                 .build();
     }
