@@ -217,3 +217,17 @@ clear
 make compile
 make execute
 exit
+make clean
+ls kotlin-concepts-service-api/
+cd kotlin-concepts-service-api/
+make clean
+make compile
+make compile
+make compile
+exit
+ls
+cd kotlin-users-service-api/
+make clean
+make compile
+make compile
+exit
