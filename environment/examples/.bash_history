@@ -286,3 +286,34 @@ exit
 sudo lsof -i :8080
 sudo kill -9 2129
 exit
+cd kotlin-concepts-service-api/
+make clean
+make compile
+make execute
+make execute
+make execute
+cd kotlin-users-service-api/
+make compile
+clear
+make execute
+clear
+make compile
+clear
+make compile
+make execute
+clear
+make compile
+make execute
+make execute
+cd java-gateway/
+make
+gradle clean
+gradle compile
+make compile
+make execute
+clear
+make compile
+make execute
+clear
+make compile
+make execute

@@ -87,7 +87,7 @@ public class Application {
 
             .route("concepts",
                 route -> route
-                    .path("api/gateway/conceptsservice/**")
+                    .path("/api/gateway/conceptsservice/**")
                     .filters(
                         f -> {
                           f.stripPrefix(3);

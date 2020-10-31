@@ -23,12 +23,12 @@ def login():
 
 
     login_post = {
-        'username': 'blue',
-        'password': '123456'
+        "username": "white",
+        "password": "qwerty"
     }
     json_data_post = json.dumps(login_post)
     conn.request("POST", "/api/gateway/usersservice/login", json_data_post, headers={'Content-type': 'application/json'})
-
+    
     res = conn.getresponse()
     data = res.read()
 
@@ -59,12 +59,12 @@ headers = login()
 
 # conn.request("GET", "/api/gateway/usersservice/users", headers=headers)
 #conn.request("POST", "/users?name=MrRed&email=mrred@gmail.com", headers={'Content-type': 'application/json'})
-
+print()
 ########################
-#### Movies Service ####
+#### Concepts Service ####
 ########################
 
-conn.request("GET", "/api/gateway/moviesservice/rol?page=0", headers=headers)
+conn.request("GET", "/api/gateway/conceptsservice/concepts/getConceptsByGeneralParams?conceptId=1222223", headers=headers)
 
 start = datetime.datetime.now()
 res = conn.getresponse()
