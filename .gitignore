@@ -196,3 +196,4 @@ environment/examples/.cache
 environment/examples/.gradle
 examples/.bash_history
 environment/examples/.bash_history
+environment/examples/java-gateway/.gradle/
