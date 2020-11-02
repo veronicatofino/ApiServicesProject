@@ -51,41 +51,42 @@ conn.request("POST", "/login", json_data_post, headers={'Content-type': 'applica
 
 headers = {
     'Content-type': 'application/json',
+    'authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJibGFjayIsImlkZW50aXR5IjoiYmxhY2siLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjAyMDI0MzY2LCJleHAiOjE2MDIwMjQ5NjZ9.GhUpEW5xthqzcSIGVGUDjZA4UHhmDn5nlO6laM_d54BIkQhmL4qdM4cDLLLEQoXGG-G5AuvU5a4oEXiQOid0lg'
 }
 
 concept_post = {
-    'pxordx': 'mrwhite@gmail.com',
-    'oldPxordx': 'white',
-    'codeType': 'qwerty',
-    'conceptClassId': 'James White',
-    'conceptId': 1222222,
-    'vocabularyId': 'James White',
-    'domainId': 'James White',
-    'track': 'James White',
-    'standardConcept': 'James White',
-    'code': 'James White',
-    'codeWithPeriods': 'James White',
-    'codeScheme': 'James White',
-    'longDesc': 'James White',
-    'shortDesc': 'James White',
-    'codeStatus': 'James White',
-    'codeChange': 'James White',
-    'codeChangeYear': 'James White',
-    'codePlannedType': 'James White',
-    'codeBillingStatus': 'James White',
-    'codeCmsClaimStatus': 'James White',
-    'sexCd': 'James White',
-    'anatOrCond': 'James White',
-    'poaCodeStatus': 'James White',
-    'poaCodeChange': 2012,
-    'poaCodeChangeYear': 'James White',
-    'validStartDate': 'James White',
-    'validEndDate': 'James White',
-    'invalidReason': 'James White',
-    'createDt': 'James White'
-}
+"pxordx" : "D",
+ "oldPxordx" : "D",
+ "codeType" : "I09",
+ "conceptClassId" : "4-dig billing code",
+ "conceptId" : 44832029,
+ "vocabularyId" : "ICD9CM",
+ "domainId" : "Condition",
+ "track" : "Medical",
+ "standardConcept" : "",
+ "code" : "0029",
+ "codeWithPeriods" : "002.9",
+ "codeScheme" : "ICD9DIAG",
+ "longDesc" : "Paratyphoid fever, unspecified",
+ "shortDesc" : "Paratyphoid fever, unspecified",
+ "codeStatus" : "A",
+ "codeChange" : "No change",
+ "codeChangeYear" : 2015,
+ "codePlannedType" : "UP",
+ "codeBillingStatus" : "Y",
+ "codeCmsClaimStatus" : "Y",
+ "sexCd" : "F",
+ "anatOrCond" : "C",
+ "poaCodeStatus" : "N",
+ "poaCodeChange" : "No change",
+ "poaCodeChangeYear" : 2015,
+ "idStartDate" : "19700101",
+ "idEndDate" : "20991231",
+ "invalidReason": "",
+ "createDt" : "41005"
+ }
 json_data_post = json.dumps(concept_post)
-conn.request("POST", "/concepts/", json_data_post, headers=headers)
+conn.request("POST", "/concepts/create", json_data_post, headers=headers)
 
 ############################################
 

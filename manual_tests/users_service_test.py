@@ -21,8 +21,8 @@ conn = http.client.HTTPConnection("192.168.56.119:8080")
 ########################################################################################################################
 """
 login_post = {
-    'username': 'blue',
-    'password': '123456'
+    'username': 'avocado',
+    'password': '123'
 }
 json_data_post = json.dumps(login_post)
 conn.request("POST", "/login", json_data_post, headers={'Content-type': 'application/json'}) 
