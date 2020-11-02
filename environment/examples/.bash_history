@@ -317,3 +317,24 @@ make execute
 clear
 make compile
 make execute
+cd kotlin-users-service-api/
+make clean
+make compile
+make execute
+exit
+cd kotlin-concepts-service-api/
+make clean
+make compile
+make compile
+make execute
+exit
+cd java-gateway/
+make clena
+make clean
+make compile
+make execute
+make clean
+make compile
+make execute
+exit
+exit

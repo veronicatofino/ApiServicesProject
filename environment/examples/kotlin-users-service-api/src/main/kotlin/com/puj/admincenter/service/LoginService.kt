@@ -71,7 +71,7 @@ class LoginService(val userRepository: UserRepository) {
                                                  .map(GrantedAuthority::getAuthority)
                                                  .collect(Collectors.toList()))
                         .setIssuedAt(Date(System.currentTimeMillis()))
-                        .setExpiration(Date(System.currentTimeMillis() + 700000))
+                        .setExpiration(Date(System.currentTimeMillis() + 3600000))
                         .signWith(SignatureAlgorithm.HS512,
                                   secretKey.toByteArray()).compact()
         return "Bearer " + token

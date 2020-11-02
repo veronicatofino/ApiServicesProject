@@ -17,7 +17,7 @@ import springfox.documentation.builders.ApiInfoBuilder
 private val apiHost: String? = null
 
 @Value(value = "\${api.basepath}")
-private val apiBasePath: String = "/api"
+private val apiBasePath: String = "/"
 
 @Configuration
 @EnableSwagger2
