@@ -65,7 +65,7 @@ class ConceptService(private val conceptRepository: ConceptRepository){
                               validEndDate = createConceptDto.validEndDate, 
                               invalidReason = createConceptDto.invalidReason, 
                               createDt = createConceptDto.createDt,
-                              deletionMark = false)
+                              deletionMark = 0)
         val conceptSaved = conceptRepository.save(concept)
         LOG.info("Concept ${createConceptDto.conceptId} created with id ${conceptSaved.id}")
 

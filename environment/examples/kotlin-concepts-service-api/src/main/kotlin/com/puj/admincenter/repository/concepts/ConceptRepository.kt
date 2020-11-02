@@ -34,7 +34,7 @@ interface ConceptRepository : JpaRepository<Concept, Int>,
     @Modifying
     @Query("""
         UPDATE Concept concept
-        SET concept.deletionMark = true
+        SET concept.deletionMark = 1
         WHERE concept.conceptId = :conceptId
     """)
     fun logicalRemoval(conceptId: Int)

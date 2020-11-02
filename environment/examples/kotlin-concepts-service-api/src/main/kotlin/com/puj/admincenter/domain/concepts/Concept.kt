@@ -104,6 +104,6 @@ data class Concept(
     val createDt: String? = "",
 
     @Column(nullable = false)
-    val deletionMark: Boolean = false
+    val deletionMark: Int = 0
 
 )

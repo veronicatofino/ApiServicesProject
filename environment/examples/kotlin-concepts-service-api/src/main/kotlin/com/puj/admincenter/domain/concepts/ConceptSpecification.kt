@@ -19,6 +19,7 @@ class ConceptSpecification(private val vocabularyId : String?,
             conceptId?.let { p.add(cb.equal(root.get<String>("conceptId"), conceptId)) }
             domainId?.let { p.add(cb.equal(root.get<String>("domainId"), domainId)) }
             shortDesc?.let{ p.add(cb.like(root.get<String>("shortDesc"), "%$shortDesc%")) }
+            p.add(cb.lessThan(root.get<Int>("deletionMark"), 1))
             return cb.and(*p.toTypedArray())
         }
     }
